@@ -38,7 +38,7 @@ namespace Project.Lcz.Controllers
             }
             else
             {
-                return NotFound($"Nenhum veículo encontrado na base de dados que contenha a seguinte placa: {licensePlate}");
+                return NotFound($"Nenhum veículo encontrado na base pela busca da seguinte placa: {licensePlate}");
             }
         }
 
