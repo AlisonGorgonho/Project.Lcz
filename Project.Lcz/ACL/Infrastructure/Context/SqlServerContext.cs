@@ -6,6 +6,7 @@ using Project.Lcz.Models;
 using Project.Lcz.Repository.Maping;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -25,7 +26,7 @@ namespace Project.Lcz.Repository.Context
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=tcp:sql-project-lcz-prod.database.windows.net,1433;Database=sqldb-project-lcz-prod;User ID=lczadmin;Password=C0EWrm!rAA&b;");
+            //optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionStrings["SqlServerDbConnection"].ConnectionString);
         }
 
         protected override void OnModelCreating(ModelBuilder builder)

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Project.Lcz.Factorys;
 using Project.Lcz.Services.Interfaces;
 using Project.Lcz.ViewModels;
@@ -6,6 +7,7 @@ using Project.Lcz.ViewModels.Validations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mime;
 using System.Threading.Tasks;
 
 namespace Project.Lcz.Controllers
@@ -21,6 +23,14 @@ namespace Project.Lcz.Controllers
             _reservationService = reservationService;
         }
 
+        /// <summary>
+        /// EndPoint responsible for create a Reservation
+        /// </summary>
+        /// <param name="reservationVM">Reservation</param>
+        /// <returns></returns>
+        [Produces(MediaTypeNames.Application.Json)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [HttpPost]
         public ActionResult<ReservationVM> CreateReservation([FromBody] ReservationVM reservationVM)
         {
@@ -35,6 +45,15 @@ namespace Project.Lcz.Controllers
             }
         }
 
+        /// <summary>
+        /// EndPoint responsible for retrieving reservation list by Client ID
+        /// </summary>
+        /// <param name="clientId">Client ID</param>
+        /// <returns></returns>
+        [Produces(MediaTypeNames.Application.Json)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         [HttpGet]
         public ActionResult<List<ReservationVM>> GetReservationByClient(int clientId)
         {
@@ -50,6 +69,15 @@ namespace Project.Lcz.Controllers
 
         }
 
+        /// <summary>
+        /// EndPoint responsible for retrieving reservation list with pickup done in range date specified
+        /// </summary>
+        /// <param name="reservationFilterVM">Filter contain two propertys: Start Date -> Inicial date of range And End Date -> Final Data of range</param>
+        /// <returns></returns>
+        [Produces(MediaTypeNames.Application.Json)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         [HttpPost("GetReservationWithPickupDone")]
         public ActionResult<List<ReservationVM>> GetReservationWithPickupDone([FromBody] ReservationFilterVM reservationFilterVM)
         {
@@ -64,6 +92,15 @@ namespace Project.Lcz.Controllers
             }
         }
 
+        /// <summary>
+        /// EndPoint responsible for update pickup date and ExpectedDevolution date from a reservation
+        /// </summary>
+        /// <param name="updateModel">ModelVM contain tree propertys: IdReservation -> Id generated in reservation create, PickupDate -> PickupDate for update in reservation And ExpectedDevolutionDate -> ExpectedDevolutionDate for update in reservation</param>
+        /// <returns></returns>
+        [Produces(MediaTypeNames.Application.Json)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         [HttpPut("UpdatePickupAndExpectedDevolutionDate")]
         public ActionResult<ReservationVM> UpdatePickupAndExpectedDevolutionDate([FromBody] UpdatePickupAndExpectedDevolutionDateVM updateModel)
         {
@@ -79,6 +116,16 @@ namespace Project.Lcz.Controllers
             }
         }
 
+        /// <summary>
+        /// EndPoint responsible for update devolution date from a reservation
+        /// </summary>
+        /// <param name="devolutionDate">DevolutionDate -> Devolution date for update in reservation</param>
+        /// <param name="reservationId">ReservationId -> Id generated in reservation create</param>
+        /// <returns></returns>
+        [Produces(MediaTypeNames.Application.Json)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         [HttpPut("UpdateDevolutionDate/devolutionDate={devolutionDate}&reservationId={reservationId}")]
         public ActionResult<ReservationVM> UpdateDevolutionDate(DateTime devolutionDate, int reservationId)
         {
@@ -94,6 +141,14 @@ namespace Project.Lcz.Controllers
             }
         }
 
+        /// <summary>
+        /// EndPoint responsible for retrieving reservation with devolution date expired
+        /// </summary>
+        /// <returns></returns>
+        [Produces(MediaTypeNames.Application.Json)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         [HttpGet("GetReservationWithDevolutionDateExpired")]
         public ActionResult<List<string>> GetReservationWithDevolutionDateExpired()
         {

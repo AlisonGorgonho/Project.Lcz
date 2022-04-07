@@ -23,6 +23,8 @@ namespace Project.Lcz
 {
     public class Startup
     {
+        private static string GetPathOfXmlFromAssembly() => Path.Combine(AppContext.BaseDirectory, $"{Assembly.GetExecutingAssembly().GetName().Name}.xml");
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -39,9 +41,10 @@ namespace Project.Lcz
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Projeto Lcz", Version = "v1", });
+                c.IncludeXmlComments(GetPathOfXmlFromAssembly());
             });
 
-            services.AddDbContext<SqlServerContext>(options => options.UseSqlServer(@"Server=tcp:sql-project-lcz-prod.database.windows.net,1433;Database=sqldb-project-lcz-prod;User ID=lczadmin;Password=C0EWrm!rAA&b;"));
+            services.AddDbContext<SqlServerContext>(options => options.UseSqlServer(Configuration.GetConnectionString("SqlServerDbConnection")));
 
             services.AddScoped<SqlServerContext, SqlServerContext>();
 

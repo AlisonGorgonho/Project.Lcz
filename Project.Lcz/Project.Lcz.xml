@@ -1,0 +1,354 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Project.Lcz</name>
+    </assembly>
+    <members>
+        <member name="M:Project.Lcz.Controllers.ClientController.GetAllClients">
+            <summary>
+            EndPoint responsible for retrieving all clients
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Project.Lcz.Controllers.ClientController.CreateClient(Project.Lcz.ViewModels.ClientVM)">
+            <summary>
+            EndPoint responsible for create a client
+            </summary>
+            <param name="client">Client Model for create</param>
+            <returns></returns>
+        </member>
+        <member name="M:Project.Lcz.Controllers.ClientController.GetClientByFilter(Project.Lcz.ViewModels.ClientFilterVM)">
+            <summary>
+            EndPoint responsible for retrieving clients By Part of Name and/or Full Cpf
+            </summary>
+            <param name="clientFilterVM">Filter contain two propertys: Name -> Part of name And Cpf -> Full Cpf</param>
+            <returns></returns>
+        </member>
+        <member name="M:Project.Lcz.Controllers.ClientController.UpdateClientAddress(Project.Lcz.ViewModels.AddressVM)">
+            <summary>
+            EndPoint responsible for update client Address
+            </summary>
+            <param name="addressVM">Client Addres Model for Update</param>
+            <returns></returns>
+        </member>
+        <member name="M:Project.Lcz.Controllers.ReservationController.CreateReservation(Project.Lcz.ViewModels.ReservationVM)">
+            <summary>
+            EndPoint responsible for create a Reservation
+            </summary>
+            <param name="reservationVM">Reservation</param>
+            <returns></returns>
+        </member>
+        <member name="M:Project.Lcz.Controllers.ReservationController.GetReservationByClient(System.Int32)">
+            <summary>
+            EndPoint responsible for retrieving reservation list by Client ID
+            </summary>
+            <param name="clientId">Client ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:Project.Lcz.Controllers.ReservationController.GetReservationWithPickupDone(Project.Lcz.ViewModels.ReservationFilterVM)">
+            <summary>
+            EndPoint responsible for retrieving reservation list with pickup done in range date specified
+            </summary>
+            <param name="reservationFilterVM">Filter contain two propertys: Start Date -> Inicial date of range And End Date -> Final Data of range</param>
+            <returns></returns>
+        </member>
+        <member name="M:Project.Lcz.Controllers.ReservationController.UpdatePickupAndExpectedDevolutionDate(Project.Lcz.ViewModels.UpdatePickupAndExpectedDevolutionDateVM)">
+            <summary>
+            EndPoint responsible for update pickup date and ExpectedDevolution date from a reservation
+            </summary>
+            <param name="updateModel">ModelVM contain tree propertys: IdReservation -> Id generated in reservation create, PickupDate -> PickupDate for update in reservation And ExpectedDevolutionDate -> ExpectedDevolutionDate for update in reservation</param>
+            <returns></returns>
+        </member>
+        <member name="M:Project.Lcz.Controllers.ReservationController.UpdateDevolutionDate(System.DateTime,System.Int32)">
+            <summary>
+            EndPoint responsible for update devolution date from a reservation
+            </summary>
+            <param name="devolutionDate">DevolutionDate -> Devolution date for update in reservation</param>
+            <param name="reservationId">ReservationId -> Id generated in reservation create</param>
+            <returns></returns>
+        </member>
+        <member name="M:Project.Lcz.Controllers.ReservationController.GetReservationWithDevolutionDateExpired">
+            <summary>
+            EndPoint responsible for retrieving reservation with devolution date expired
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Project.Lcz.Controllers.VehicleController.CreateVehicle(Project.Lcz.ViewModels.VehicleVM)">
+            <summary>
+            EndPoint responsible for create a vehicle
+            </summary>
+            <param name="vehicleVM">Vehicle Model for Create</param>
+            <returns></returns>
+        </member>
+        <member name="M:Project.Lcz.Controllers.VehicleController.GetVehicleByLicensePlate(System.String)">
+            <summary>
+            EndPoint responsible for get vehicle by licensePlate
+            </summary>
+            <param name="licensePlate">LicensePlate for search vehicle</param>
+            <returns></returns>
+        </member>
+        <member name="M:Project.Lcz.Controllers.VehicleController.GetVehicleByFilter(Project.Lcz.ViewModels.VehicleFilterVM)">
+            <summary>
+            EndPoint responsible for get vehicle by manufacturer and/or model
+            </summary>
+            <param name="vehicleFilterVM">Filter contain two propertys: Model -> Model of Vehicle And Manufacturer -> Manufacturer of Vehicle
+            </param>
+            <returns></returns>
+        </member>
+        <member name="T:Project.Lcz.Enums.AddressType">
+            <summary>
+            Enum to Define AddressType [HOME -> 0, WORK -> 1, OTHERS -> 2]
+            </summary>
+        </member>
+        <member name="F:Project.Lcz.Enums.AddressType.HOME">
+            <summary>
+            HOME Enum from AddressType
+            </summary>
+        </member>
+        <member name="F:Project.Lcz.Enums.AddressType.WORK">
+            <summary>
+            WORK Enum from AddressType
+            </summary>
+        </member>
+        <member name="F:Project.Lcz.Enums.AddressType.OTHERS">
+            <summary>
+            OTHERS Enum from AddressType
+            </summary>
+        </member>
+        <member name="T:Project.Lcz.ViewModels.AddressVM">
+            <summary>
+            View Model to define AddressVM
+            </summary>
+        </member>
+        <member name="P:Project.Lcz.ViewModels.AddressVM.Id">
+            <summary>
+            Id from AddressVM
+            </summary>
+        </member>
+        <member name="P:Project.Lcz.ViewModels.AddressVM.Cep">
+            <summary>
+            Cep from AddressVM
+            </summary>
+        </member>
+        <member name="P:Project.Lcz.ViewModels.AddressVM.StreetAddress">
+            <summary>
+            StreetAddress from AddressVM
+            </summary>
+        </member>
+        <member name="P:Project.Lcz.ViewModels.AddressVM.Number">
+            <summary>
+            Number from AddressVM
+            </summary>
+        </member>
+        <member name="P:Project.Lcz.ViewModels.AddressVM.AddressDetails">
+            <summary>
+            AddressDetails from AddressVM
+            </summary>
+        </member>
+        <member name="P:Project.Lcz.ViewModels.AddressVM.District">
+            <summary>
+            District from AddressVM
+            </summary>
+        </member>
+        <member name="P:Project.Lcz.ViewModels.AddressVM.City">
+            <summary>
+            City from AddressVM
+            </summary>
+        </member>
+        <member name="P:Project.Lcz.ViewModels.AddressVM.State">
+            <summary>
+            State from AddressVM
+            </summary>
+        </member>
+        <member name="P:Project.Lcz.ViewModels.AddressVM.AddressType">
+            <summary>
+            AddressType from AddressVM [HOME -> 0, WORK -> 1, OTHER -> 2]
+            </summary>
+        </member>
+        <member name="P:Project.Lcz.ViewModels.AddressVM.IdClient">
+            <summary>
+            IdClient from AddressVM
+            </summary>
+        </member>
+        <member name="T:Project.Lcz.ViewModels.ClientFilterVM">
+            <summary>
+            View Model to define ClientFilterVM
+            </summary>
+        </member>
+        <member name="P:Project.Lcz.ViewModels.ClientFilterVM.Name">
+            <summary>
+            Name from ClientFilterVM
+            </summary>
+        </member>
+        <member name="P:Project.Lcz.ViewModels.ClientFilterVM.Cpf">
+            <summary>
+            Cpf from ClientFilterVM
+            </summary>
+        </member>
+        <member name="T:Project.Lcz.ViewModels.ClientVM">
+            <summary>
+            View Model to define ClientVM
+            </summary>
+        </member>
+        <member name="P:Project.Lcz.ViewModels.ClientVM.Id">
+            <summary>
+            Id From ClientVM
+            </summary>
+        </member>
+        <member name="P:Project.Lcz.ViewModels.ClientVM.Name">
+            <summary>
+            Name From ClientVM
+            </summary>
+        </member>
+        <member name="P:Project.Lcz.ViewModels.ClientVM.Cpf">
+            <summary>
+            Cpf From ClientVM
+            </summary>
+        </member>
+        <member name="P:Project.Lcz.ViewModels.ClientVM.BirthDate">
+            <summary>
+            BirthDate From ClientVM
+            </summary>
+        </member>
+        <member name="P:Project.Lcz.ViewModels.ClientVM.CnhNumber">
+            <summary>
+            CnhNumber From ClientVM
+            </summary>
+        </member>
+        <member name="P:Project.Lcz.ViewModels.ClientVM.Address">
+            <summary>
+            Address From ClientVM
+            </summary>
+        </member>
+        <member name="T:Project.Lcz.ViewModels.ReservationFilterVM">
+            <summary>
+            View Model to define ReservationFilterVM
+            </summary>
+        </member>
+        <member name="P:Project.Lcz.ViewModels.ReservationFilterVM.StartDate">
+            <summary>
+            StartDate from ReservationFilterVM
+            </summary>
+        </member>
+        <member name="P:Project.Lcz.ViewModels.ReservationFilterVM.EndDate">
+            <summary>
+            EndDate from ReservationFilterVM
+            </summary>
+        </member>
+        <member name="T:Project.Lcz.ViewModels.ReservationVM">
+            <summary>
+            View Model to define ReservationVM
+            </summary>
+        </member>
+        <member name="P:Project.Lcz.ViewModels.ReservationVM.Id">
+            <summary>
+            Id from ReservationVM
+            </summary>
+        </member>
+        <member name="P:Project.Lcz.ViewModels.ReservationVM.IdClient">
+            <summary>
+            IdClient from ReservationVM
+            </summary>
+        </member>
+        <member name="P:Project.Lcz.ViewModels.ReservationVM.IdVehicle">
+            <summary>
+            IdVehicle from ReservationVM
+            </summary>
+        </member>
+        <member name="P:Project.Lcz.ViewModels.ReservationVM.CreationDate">
+            <summary>
+            CreationDate from ReservationVM
+            </summary>
+        </member>
+        <member name="P:Project.Lcz.ViewModels.ReservationVM.UpdateDate">
+            <summary>
+            UpdateDate from ReservationVM
+            </summary>
+        </member>
+        <member name="P:Project.Lcz.ViewModels.ReservationVM.PickupDate">
+            <summary>
+            PickupDate from ReservationVM
+            </summary>
+        </member>
+        <member name="P:Project.Lcz.ViewModels.ReservationVM.ExpectedDevolutionDate">
+            <summary>
+            ExpectedDevolutionDate from ReservationVM
+            </summary>
+        </member>
+        <member name="P:Project.Lcz.ViewModels.ReservationVM.DevolutionDate">
+            <summary>
+            DevolutionDate from ReservationVM
+            </summary>
+        </member>
+        <member name="T:Project.Lcz.ViewModels.UpdatePickupAndExpectedDevolutionDateVM">
+            <summary>
+            View Model to define UpdatePickupAndExpectedDevolutionDateVM
+            </summary>
+        </member>
+        <member name="P:Project.Lcz.ViewModels.UpdatePickupAndExpectedDevolutionDateVM.IdReservation">
+            <summary>
+            IdReservation from UpdatePickupAndExpectedDevolutionDateVM
+            </summary>
+        </member>
+        <member name="P:Project.Lcz.ViewModels.UpdatePickupAndExpectedDevolutionDateVM.PickupDate">
+            <summary>
+            PickupDate from UpdatePickupAndExpectedDevolutionDateVM
+            </summary>
+        </member>
+        <member name="P:Project.Lcz.ViewModels.UpdatePickupAndExpectedDevolutionDateVM.ExpectedDevolutionDate">
+            <summary>
+            ExpectedDevolutionDate from UpdatePickupAndExpectedDevolutionDateVM
+            </summary>
+        </member>
+        <member name="T:Project.Lcz.ViewModels.VehicleFilterVM">
+            <summary>
+            View Model to define VehicleFilterVM
+            </summary>
+        </member>
+        <member name="P:Project.Lcz.ViewModels.VehicleFilterVM.Manufacture">
+            <summary>
+            Manufacture from VehicleFilterVM
+            </summary>
+        </member>
+        <member name="P:Project.Lcz.ViewModels.VehicleFilterVM.Model">
+            <summary>
+            Model from VehicleFilterVM
+            </summary>
+        </member>
+        <member name="T:Project.Lcz.ViewModels.VehicleVM">
+            <summary>
+            View Model to define VehicleVM
+            </summary>
+        </member>
+        <member name="P:Project.Lcz.ViewModels.VehicleVM.Id">
+            <summary>
+            Id from VehicleVM
+            </summary>
+        </member>
+        <member name="P:Project.Lcz.ViewModels.VehicleVM.IdManufacturer">
+            <summary>
+            IdManufacturer from VehicleVM
+            </summary>
+        </member>
+        <member name="P:Project.Lcz.ViewModels.VehicleVM.ManufacturerName">
+            <summary>
+            ManufacturerName from VehicleVM
+            </summary>
+        </member>
+        <member name="P:Project.Lcz.ViewModels.VehicleVM.IdModel">
+            <summary>
+            IdModel from VehicleVM
+            </summary>
+        </member>
+        <member name="P:Project.Lcz.ViewModels.VehicleVM.ModelName">
+            <summary>
+            ModelName from VehicleVM
+            </summary>
+        </member>
+        <member name="P:Project.Lcz.ViewModels.VehicleVM.LicensePlate">
+            <summary>
+            LicensePlate from VehicleVM
+            </summary>
+        </member>
+    </members>
+</doc>
